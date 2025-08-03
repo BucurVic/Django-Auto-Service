@@ -84,6 +84,8 @@ Scopul aplicației este de a permite clienților să creeze rezervări pentru se
 ```bash
 git clone https://github.com/username/repo-name.git
 cd repo-name
+
+
 Server:
 python/python3 manage.py runserver
 
