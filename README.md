@@ -1,89 +1,90 @@
 # 🔧 Auto Service Management System
 
-Aceasta este o aplicație web completă pentru un **service auto**, construită cu:
+A full-featured **auto service** web application built with:
 
-- 🔙 Back-end: **Django** (Python)
-- 🌐 Front-end: **React.js** + **Tailwind CSS**
-- 🔐 Autentificare: **JWT (JSON Web Tokens)**
+- 🔙 **Back-end:** Django (Python)  
+- 🌐 **Front-end:** React.js + Tailwind CSS  
+- 🔐 **Authentication:** JWT (JSON Web Tokens)  
 
-Scopul aplicației este de a permite clienților să creeze rezervări pentru service, iar angajații (workers) să gestioneze aceste rezervări prin acceptare, stabilirea pieselor necesare, prețurilor și datei finalizării reparației.
-
----
-
-## 📘 Funcționalități
-
-### 👤 Autentificare
-- Login realizat prin JWT pentru siguranță și persistență a sesiunii.
-- Utilizatorii autentificați pot accesa funcționalități specifice (ex: clienți vs. workers).
-
-### 🧾 Booking-uri (Rezervări)
-- Clienții pot crea o rezervare pentru service (ex: revizie, reparații, verificări).
-- Workers pot vedea rezervările disponibile și le pot **accepta**.
-- După acceptare, pot introduce:
-  - Prețul pieselor necesare
-  - Data estimată de finalizare
-- Rezervarea este considerată **finalizată** după setarea acestor informații.
+This application allows **customers** to create service bookings, and **workers** to manage those bookings by accepting them, specifying required parts, setting prices, and determining the repair completion date.
 
 ---
 
-## 🧠 Tehnologii & Arhitectură
+## 📘 Features
+
+### 👤 Authentication
+- JWT-based login for secure session management.
+- Role-based access (customers vs. workers).
+
+### 🧾 Bookings
+- Customers can create service bookings (e.g., maintenance, repairs, inspections).
+- Workers can view available bookings and **accept** them.
+- Once accepted, workers can set:
+  - Required parts cost
+  - Estimated completion date
+- Bookings are marked **completed** after these details are set.
+
+---
+
+## 🧠 Technologies & Architecture
 
 ### 🐍 Back-End – Django
-- Framework robust și complet pentru dezvoltare rapidă.
-- Urmează arhitectura **MTV (Model-Template-View)**.
-- Folosește **ORM-ul integrat Django**:
-  - Transformă automat modelele Python în tabele SQL
-  - Simplifică interogările și persistarea datelor fără a scrie SQL manual
+- Robust and complete framework for rapid development.
+- Follows the **MTV (Model-Template-View)** architecture.
+- Uses Django’s **built-in ORM**:
+  - Automatically maps Python models to SQL tables
+  - Simplifies queries and data persistence
 
-#### Exemple de facilități oferite de Django:
-- Autogenerare tabele și migrări
-- Validare automată a datelor
-- Middleware pentru autentificare JWT
-- API-uri REST cu `django-rest-framework`
+#### Key Features:
+- Auto-generated tables and migrations
+- Built-in data validation
+- Middleware for JWT authentication
+- REST APIs with `django-rest-framework`
 
-### 📦 API REST
-- Construit folosind `Django REST Framework`
-- Rute protejate prin JWT
-- Endpoint-uri pentru:
+### 📦 REST API
+- Built using `Django REST Framework`
+- JWT-protected routes
+- Endpoints for:
   - Login / Register
-  - Creare / vizualizare / actualizare rezervări
-  - Filtrare în funcție de status (nou, acceptat, finalizat)
+  - Create / view / update bookings
+  - Filter by booking status (new, accepted, completed)
 
-### 🔐 Autentificare – JWT
-- După login, clientul primește un token JWT
-- Tokenul este stocat în `localStorage` în React și trimis la fiecare request autorizat
-- Protecție eficientă pentru accesul resurselor private
+### 🔐 Authentication – JWT
+- Upon login, the client receives a JWT token
+- Token stored in `localStorage` in React
+- Token sent with every authorized request
 
 ---
 
 ## 💻 Front-End – React + Tailwind CSS
-- UI modern, bazat pe React.js
-- Stilizare realizată cu **Tailwind CSS**:
-  - Design rapid, responsive, și consistent
-  - Evită CSS redundant și permite prototipare rapidă
-- Folosește `React Router` pentru navigație
-- Se conectează la backend prin HTTP REST calls
-- Tokenul JWT este gestionat local și folosit pentru a proteja rutele cu `PrivateRoute`
+- Modern UI built with React.js
+- Styled with **Tailwind CSS**:
+  - Responsive and consistent design
+  - Eliminates redundant CSS
+- Navigation with `React Router`
+- Communicates with backend via REST API
+- JWT token handled locally with `PrivateRoute` protection
 
 ---
 
-## 🔗 Rute importante în aplicație
+## 🔗 Key API Routes
 
-| Rol       | Funcție                            | Endpoint                  |
-|-----------|-------------------------------------|---------------------------|
-| Client    | Login / Register                   | `/api/token/`             |
-| Client    | Creează o rezervare                | `/api/bookings/`          |
-| Worker    | Vizualizează rezervări noi         | `/api/bookings/?status=new` |
-| Worker    | Acceptă și setează detalii         | `/api/bookings/<id>/`     |
+| Role     | Function                      | Endpoint                     |
+|----------|-------------------------------|------------------------------|
+| Client   | Login / Register               | `/api/token/`                |
+| Client   | Create booking                 | `/api/bookings/`             |
+| Worker   | View new bookings              | `/api/bookings/?status=new`  |
+| Worker   | Accept booking & set details   | `/api/bookings/<id>/`        |
 
 ---
 
-## 🛠️ Cum rulezi proiectul local
+## 🛠️ Run the Project Locally
 
-### Clonează repository-ul
+### Clone the repository
 ```bash
 git clone https://github.com/username/repo-name.git
 cd repo-name
+
 
 
 Server:
